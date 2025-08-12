@@ -10,10 +10,16 @@ export function Hero ({
   secondaryCta = { href: '/services', label: 'See services' }
 }) {
   return (
-  <section className='relative isolate overflow-hidden bg-white min-h-[100svh]'>
+  <section className='relative isolate overflow-hidden bg-gradient-to-br from-gray-50 to-white min-h-[100svh]'>
       {/* background accents */}
       <div className='absolute inset-0 -z-10'>
-        <Threads amplitude={1} distance={0} enableMouseInteraction className='absolute inset-0' />
+        <Threads
+          color={[0.65, 0.92, 0.88]}
+          amplitude={1}
+          distance={0}
+          enableMouseInteraction
+          className='absolute inset-0'
+        />
         <div className='pointer-events-none absolute inset-0'>
           <div className='absolute -top-24 -left-24 h-72 w-72 rounded-full bg-gray-200 blur-3xl opacity-60' />
           <div className='absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-gray-100 blur-3xl opacity-60' />
