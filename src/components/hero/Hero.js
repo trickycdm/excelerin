@@ -1,26 +1,28 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import Threads from '@/components/backgrounds/Threads';
 
 export function Hero ({
   eyebrow = 'Excelerin',
   title = 'Accelerate your business with AI',
   subtitle = 'Practical, risk-aware consultancy and implementation for SMEs across Scotland and the UK.',
   primaryCta = { href: '/contact', label: 'Book a discovery call' },
-  secondaryCta = { href: '/services', label: 'See services' },
-  imageSrc = '/excelerin.png'
+  secondaryCta = { href: '/services', label: 'See services' }
 }) {
   return (
-    <section className='relative isolate overflow-hidden bg-white'>
+  <section className='relative isolate overflow-hidden bg-white min-h-[100svh]'>
       {/* background accents */}
-      <div className='pointer-events-none absolute inset-0 -z-10'>
-        <div className='absolute -top-24 -left-24 h-72 w-72 rounded-full bg-gray-200 blur-3xl opacity-60' />
-        <div className='absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-gray-100 blur-3xl opacity-60' />
-        <div className='absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent' />
+      <div className='absolute inset-0 -z-10'>
+        <Threads amplitude={1} distance={0} enableMouseInteraction className='absolute inset-0' />
+        <div className='pointer-events-none absolute inset-0'>
+          <div className='absolute -top-24 -left-24 h-72 w-72 rounded-full bg-gray-200 blur-3xl opacity-60' />
+          <div className='absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-gray-100 blur-3xl opacity-60' />
+          <div className='absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent' />
+        </div>
       </div>
 
       <div className='container py-20 sm:py-28'>
-        <div className='grid items-center gap-12 md:grid-cols-2'>
+        <div className='grid items-center gap-12'>
           <div>
             <p className='text-xs uppercase tracking-widest text-gray-500'>{eyebrow}</p>
             <h1 className='mt-3 text-4xl font-semibold leading-tight text-gray-900 sm:text-5xl'>{title}</h1>
@@ -59,18 +61,7 @@ export function Hero ({
             <p className='mt-6 text-sm text-gray-500'>From AI readiness to hands-on implementation — we guide SMEs from idea to execution.</p>
           </div>
 
-          <div className='relative'>
-            <div className='relative mx-auto aspect-[4/3] w-full max-w-lg overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm'>
-              <Image
-                src={imageSrc}
-                alt='Abstract Excelerin visual'
-                fill
-                sizes='(min-width: 1024px) 32rem, 100vw'
-                className='object-cover'
-                priority
-              />
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>
@@ -82,8 +73,7 @@ Hero.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   primaryCta: PropTypes.shape({ href: PropTypes.string.isRequired, label: PropTypes.string.isRequired }),
-  secondaryCta: PropTypes.shape({ href: PropTypes.string.isRequired, label: PropTypes.string.isRequired }),
-  imageSrc: PropTypes.string
+  secondaryCta: PropTypes.shape({ href: PropTypes.string.isRequired, label: PropTypes.string.isRequired })
 };
 
 export default Hero;
