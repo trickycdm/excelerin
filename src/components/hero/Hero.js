@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Threads from '@/components/backgrounds/Threads';
 
 export function Hero ({
-  eyebrow = 'Excelerin',
-  title = 'Accelerate your business with AI',
-  subtitle = 'Practical, risk-aware consultancy and implementation for SMEs across Scotland and the UK.',
+  eyebrow = 'Practical AI for businesses',
+  title = 'Make your business AI‑ready',
+  subtitle = 'Approachable, outcome‑driven consultancy and implementation for businesses across Scotland and the UK — from idea to measurable results.',
   primaryCta = { href: '/contact', label: 'Book a discovery call' },
   secondaryCta = { href: '/services', label: 'See services' }
 }) {
@@ -36,7 +36,7 @@ export function Hero ({
 
             {/* value chips */}
             <ul className='mt-6 flex flex-wrap gap-2'>
-              {['Clarity', 'Practicality', 'Measurable outcomes', 'Risk-aware'].map((pill) => (
+              {['Accessible', 'Practical', 'Measured results', 'Privacy‑first'].map((pill) => (
                 <li key={pill} className='rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-700'>
                   {pill}
                 </li>
@@ -64,7 +64,7 @@ export function Hero ({
             </div>
 
             {/* trust blurb */}
-            <p className='mt-6 text-sm text-gray-500'>From AI readiness to hands-on implementation — we guide SMEs from idea to execution.</p>
+            <p className='mt-6 text-sm text-gray-500'>From readiness and governance to hands‑on delivery — we guide businesses from idea to measurable wins.</p>
           </div>
 
           
