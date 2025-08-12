@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import ServiceCard from '@/components/services/ServiceCard';
 
-export function ServicesGrid ({ services }) {
+export function ServicesGrid ({ services, gridClassName = 'mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3' }) {
   return (
     <section className='bg-white'>
       <div className='container py-16 sm:py-20'>
@@ -11,7 +11,7 @@ export function ServicesGrid ({ services }) {
           <p className='mt-4 text-gray-600'>Clear, outcome-focused services to unlock value from AI safely and effectively.</p>
         </div>
 
-        <ul className='mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+        <ul className={gridClassName}>
           {services.map((s) => (
             <ServiceCard key={s.href} {...s} />
           ))}
@@ -29,7 +29,8 @@ ServicesGrid.propTypes = {
       title: PropTypes.string.isRequired,
       excerpt: PropTypes.string.isRequired
     })
-  ).isRequired
+  ).isRequired,
+  gridClassName: PropTypes.string
 };
 
 export default ServicesGrid;

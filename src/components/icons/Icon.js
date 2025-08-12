@@ -47,6 +47,16 @@ function RocketIcon ({ className }) {
   );
 }
 
+function DatabaseIcon ({ className }) {
+  return (
+    <svg className={className} viewBox='0 0 24 24' fill='none' stroke='currentColor' aria-hidden>
+      <ellipse cx='12' cy='6' rx='8' ry='3' strokeWidth='2' />
+      <path d='M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6' strokeWidth='2' />
+      <path d='M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6' strokeWidth='2' />
+    </svg>
+  );
+}
+
 export function Icon ({ name, className = 'h-6 w-6' }) {
   switch (name) {
     case 'compass':
@@ -59,6 +69,8 @@ export function Icon ({ name, className = 'h-6 w-6' }) {
       return <AcademicCapIcon className={className} />;
     case 'rocket':
       return <RocketIcon className={className} />;
+    case 'database':
+      return <DatabaseIcon className={className} />;
     default:
       return <CompassIcon className={className} />;
   }

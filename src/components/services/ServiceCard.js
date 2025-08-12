@@ -2,9 +2,9 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Icon } from '@/components/icons/Icon';
 
-export function ServiceCard ({ href, icon, title, excerpt }) {
+export function ServiceCard ({ href, icon, title, excerpt, className = '' }) {
   return (
-    <li className='group rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-colors hover:bg-gray-50'>
+    <li className={`group rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-colors hover:bg-gray-50 ${className}`}>
       <Link href={href} className='flex h-full flex-col'>
         <span className='inline-flex h-11 w-11 items-center justify-center rounded-lg bg-gray-100 text-gray-900 ring-1 ring-inset ring-gray-200'>
           <Icon name={icon} className='h-6 w-6' />
@@ -26,7 +26,8 @@ ServiceCard.propTypes = {
   href: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  excerpt: PropTypes.string.isRequired
+  excerpt: PropTypes.string.isRequired,
+  className: PropTypes.string
 };
 
 export default ServiceCard;
