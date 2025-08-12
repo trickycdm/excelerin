@@ -4,7 +4,7 @@ import ProcessSteps from '@/components/process/ProcessSteps'
 import FAQAccordion from '@/components/faq/FAQAccordion'
 import CTASection from '@/components/cta/CTASection'
 
-export const metadata = { title: 'AI Consultancy', description: 'Practical, vendor-neutral AI consultancy for SMEs: opportunity discovery, risk & compliance, data readiness, and a 90‑day roadmap.' }
+export const metadata = { title: 'AI Consultancy', description: 'Practical, vendor-neutral AI consultancy for SMEs in any sector: opportunity discovery, risk & compliance, data readiness, and a 90‑day roadmap.' }
 
 export default function AIConsultancyPage () {
   return (
@@ -71,9 +71,11 @@ export default function AIConsultancyPage () {
                 <ul className='mt-3 space-y-2 text-gray-700'>
                   {[
                     'Leadership teams exploring AI but unsure where to start',
+                    'Owner‑managed and non‑technical teams',
                     'Ops and service leaders aiming to reduce cost or improve throughput',
                     'Organisations trialling tools ad‑hoc and needing governance',
-                    'Teams with valuable data but unclear on readiness and quality'
+                    'Teams with valuable data but unclear on readiness and quality',
+                    'Any sector — manufacturing, trades, professional services, retail, public/third sector'
                   ].map((text) => (
                     <li key={text} className='flex items-start gap-2'>
                       <svg className='mt-1 h-4 w-4 text-gray-900' viewBox='0 0 20 20' fill='currentColor'>

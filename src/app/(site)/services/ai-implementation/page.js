@@ -4,7 +4,7 @@ import ProcessSteps from '@/components/process/ProcessSteps'
 import FAQAccordion from '@/components/faq/FAQAccordion'
 import CTASection from '@/components/cta/CTASection'
 
-export const metadata = { title: 'AI Implementation' }
+export const metadata = { title: 'AI Implementation', description: 'Design, build, and deploy AI solutions for SMEs in any sector — integrate with workflows, measure outcomes, and scale responsibly.' }
 
 export default function AIImplementationPage () {
   return (
@@ -61,9 +61,55 @@ export default function AIImplementationPage () {
         </div>
       </section>
 
+      {/* Who we help / Why Excelerin */}
+      <section className='bg-gray-50 border-y border-gray-200'>
+        <div className='container py-16 sm:py-20'>
+          <div className='rounded-2xl border border-gray-200 bg-white p-6 sm:p-8'>
+            <div className='grid gap-8 md:grid-cols-2'>
+              <div>
+                <h3 className='text-base font-semibold text-gray-900'>Who we help</h3>
+                <ul className='mt-3 space-y-2 text-gray-700'>
+                  {[
+                    'Owner‑managed and non‑technical teams',
+                    'Any sector — manufacturing, trades, professional services, retail, public/third sector',
+                    'Teams moving from pilot to production',
+                    'Businesses needing safe integrations and change support'
+                  ].map((text) => (
+                    <li key={text} className='flex items-start gap-2'>
+                      <svg className='mt-1 h-4 w-4 text-gray-900' viewBox='0 0 20 20' fill='currentColor'>
+                        <path fillRule='evenodd' d='M16.704 5.29a1 1 0 0 1 .006 1.414l-7.25 7.333a1 1 0 0 1-1.432.018L3.29 9.97a1 1 0 1 1 1.42-1.407l3.17 3.2 6.54-6.61a1 1 0 0 1 1.283-.137Z' clipRule='evenodd' />
+                      </svg>
+                      <span>{text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className='text-base font-semibold text-gray-900'>Why Excelerin</h3>
+                <ul className='mt-3 space-y-2 text-gray-700'>
+                  {[
+                    'Vendor‑neutral choices aligned to your environment and budget',
+                    'Security, privacy, and GDPR built in',
+                    'Outcome‑led delivery with clear KPIs',
+                    'Right‑sized engagement for SMEs'
+                  ].map((text) => (
+                    <li key={text} className='flex items-start gap-2'>
+                      <svg className='mt-1 h-4 w-4 text-gray-900' viewBox='0 0 20 20' fill='currentColor'>
+                        <path fillRule='evenodd' d='M16.704 5.29a1 1 0 0 1 .006 1.414l-7.25 7.333a1 1 0 0 1-1.432.018L3.29 9.97a1 1 0 1 1 1.42-1.407l3.17 3.2 6.54-6.61a1 1 0 0 1 1.283-.137Z' clipRule='evenodd' />
+                      </svg>
+                      <span>{text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <ProcessSteps
         variant='timeline'
-        tone='subtle'
+        tone='white'
         heading={{ eyebrow: 'How it works', title: 'Pilot to scale, safely', lead: 'Prove value early, integrate, and scale with governance.' }}
         steps={[
           { icon: 'compass', title: 'Design', description: 'Define scope, success metrics, risks, and technical approach.' },

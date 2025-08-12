@@ -4,7 +4,7 @@ import ProcessSteps from '@/components/process/ProcessSteps'
 import FAQAccordion from '@/components/faq/FAQAccordion'
 import CTASection from '@/components/cta/CTASection'
 
-export const metadata = { title: 'AI Discovery Workshops', description: 'Structured, collaborative AI discovery workshops for SMEs to uncover high‑value use cases, assess feasibility and risk, and leave with a prioritised plan.' }
+export const metadata = { title: 'AI Discovery Workshops', description: 'Structured, collaborative AI discovery workshops for SMEs in any sector to uncover high‑value use cases, assess feasibility and risk, and leave with a prioritised plan.' }
 
 export default function AIDiscoveryWorkshopsPage () {
   return (
@@ -71,9 +71,11 @@ export default function AIDiscoveryWorkshopsPage () {
                 <ul className='mt-3 space-y-2 text-gray-700'>
                   {[
                     'Leaders wanting clarity on where to start with AI',
+                    'Owner‑managed and non‑technical teams',
                     'Ops and product teams seeking quick wins and pilot ideas',
                     'Data/IT teams needing alignment on feasibility and constraints',
-                    'Cross‑functional groups aligning on outcomes and governance'
+                    'Cross‑functional groups aligning on outcomes and governance',
+                    'Any sector — manufacturing, trades, professional services, retail, public/third sector'
                   ].map((text) => (
                     <li key={text} className='flex items-start gap-2'>
                       <svg className='mt-1 h-4 w-4 text-gray-900' viewBox='0 0 20 20' fill='currentColor'>

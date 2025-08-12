@@ -13,12 +13,14 @@ This marketing site will serve as the central brand touchpoint — explaining ou
 - Clearly communicate **what we do**, **how we work**, and **why we’re different**.
 - Generate high-quality leads via enquiry forms and booking calls.
 - Provide a scalable technical foundation that can be extended over time.
+ - Help every business become **AI‑ready**, regardless of sector or technical maturity.
 
 ---
 ### **3. Target Audience**
 
 - **Primary:** SME owners and decision-makers in Scotland and across the UK.
 - **Secondary:** Business advisors, local enterprise agencies, and potential referral partners.
+ - **Sectors:** Applicable across industries — from trades and manufacturing to professional services, retail, health, and the public/third sector.
 - **Pain Points:**
     - Confusion about AI’s practical uses.
     - Fear of high cost or complexity.
@@ -26,10 +28,10 @@ This marketing site will serve as the central brand touchpoint — explaining ou
 ---
 ### **4. Brand Positioning**
 
-- **Tone:** Approachable, knowledgeable, and results-focused.
+- **Tone:** Approachable, knowledgeable, results-focused, and inclusive for non‑technical audiences.
 - **Visual Style:** Minimal, tech-forward, clean typography, high contrast with accent colour(s) to signal innovation.
 - **Messaging Pillars:**
-    1. Making AI accessible.
+    1. Making AI accessible to every business (not just tech‑led companies).
     2. Delivering practical, results-driven solutions.
     3. Guiding businesses from idea to execution.
 ---

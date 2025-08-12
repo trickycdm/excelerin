@@ -4,7 +4,7 @@ import ProcessSteps from '@/components/process/ProcessSteps'
 import FAQAccordion from '@/components/faq/FAQAccordion'
 import CTASection from '@/components/cta/CTASection'
 
-export const metadata = { title: 'AI Readiness Assessments', description: 'Independent AI readiness assessments for SMEs: data quality, security & privacy, risk posture, and a prioritised 30/60/90‑day plan.' }
+export const metadata = { title: 'AI Readiness Assessments', description: 'Independent AI readiness assessments for SMEs in any sector: data quality, security & privacy, risk posture, and a prioritised 30/60/90‑day plan.' }
 
 export default function AIReadinessAssessmentsPage () {
   return (
@@ -71,9 +71,11 @@ export default function AIReadinessAssessmentsPage () {
                 <ul className='mt-3 space-y-2 text-gray-700'>
                   {[
                     'Leaders seeking a clear starting point and risk view',
+                    'Non‑technical and owner‑managed teams',
                     'IT/Data teams evaluating data quality, access, and governance',
                     'Ops functions exploring AI but needing controls and change support',
-                    'Regulated teams requiring privacy, security, and compliance assurance'
+                    'Regulated teams requiring privacy, security, and compliance assurance',
+                    'Any sector — manufacturing, trades, professional services, retail, public/third sector'
                   ].map((text) => (
                     <li key={text} className='flex items-start gap-2'>
                       <svg className='mt-1 h-4 w-4 text-gray-900' viewBox='0 0 20 20' fill='currentColor'>
