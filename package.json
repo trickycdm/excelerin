@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "motion": "^12.23.12",
     "next": "15.4.6",
     "ogl": "^1.0.11",
     "preline": "^3.2.3",

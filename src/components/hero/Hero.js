@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Threads from '@/components/backgrounds/Threads';
+import RotatingText from '@/components/text/RotatingText';
 
 export function Hero ({
   eyebrow = 'Practical AI for businesses',
@@ -29,9 +30,27 @@ export function Hero ({
 
       <div className='container py-20 sm:py-28'>
         <div className='grid items-center gap-12'>
-          <div>
+          <div className='max-w-full lg:max-w-[60%]'>
             <p className='text-xs uppercase tracking-widest text-gray-500'>{eyebrow}</p>
-            <h1 className='mt-3 text-4xl font-semibold leading-tight text-gray-900 sm:text-5xl'>{title}</h1>
+            <h1 className='mt-3 text-4xl font-semibold leading-tight text-gray-900 sm:text-5xl'>
+              Make your business{' '}
+              <span className='inline-flex items-baseline rounded-md bg-teal-200 text-gray-900 px-1.5 sm:px-2 py-0.5 sm:py-1 align-middle'>
+                <span className='mr-0.5'>AI‑</span>
+                <RotatingText
+                  texts={['Aware', 'Trained', 'Empowered', 'Ready']}
+                  loop={false}
+                  mainClassName='overflow-hidden'
+                  staggerFrom='last'
+                  initial={{ y: '100%' }}
+                  animate={{ y: 0 }}
+                  exit={{ y: '-120%' }}
+                  staggerDuration={0.02}
+                  splitLevelClassName='overflow-hidden pb-0.5 sm:pb-1'
+                  transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+                  rotationInterval={1800}
+                />
+              </span>
+            </h1>
             <p className='mt-4 text-lg text-gray-600'>{subtitle}</p>
 
             {/* value chips */}
