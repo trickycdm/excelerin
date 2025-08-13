@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import ServiceCard from '@/components/services/ServiceCard';
 
-export function ServicesGrid ({ services, gridClassName = 'mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3', eyebrow = 'Services', title = 'What we do', lead = 'Clear, outcome-focused services to unlock value from AI safely and effectively.' }) {
+const serviceIntroBlurb = 'We use a custom built AI solution to get to know your business inside out. We then give you a simple, easy to understand roadmap showing where AI can fit into your business. Our team can then help implement and support bespoke solutions, as well as train your team and measure the results. We deliver safe, AI solutions that result in tangible results.'
+
+export function ServicesGrid ({ services, gridClassName = 'mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3', eyebrow = 'Services', title = 'What we do', lead = serviceIntroBlurb }) {
   return (
     <section className='bg-white'>
       <div className='container py-16 sm:py-20'>

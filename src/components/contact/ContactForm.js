@@ -15,7 +15,6 @@ export default function ContactForm ({ defaultService }) {
     phone: '',
     service: defaultService && options.includes(defaultService) ? defaultService : options[0],
     message: '',
-    consent: false,
     website: '' // honeypot
   });
   const [errors, setErrors] = useState({});
@@ -56,7 +55,7 @@ export default function ContactForm ({ defaultService }) {
     }
   }, [form]);
 
-  const isDisabled = isSubmitting || !form.name || !form.company || !form.email || !form.message || !form.consent;
+  const isDisabled = isSubmitting || !form.name || !form.company || !form.email || !form.message;
 
   return (
     <form onSubmit={handleSubmit} noValidate className='space-y-6'>
@@ -107,11 +106,7 @@ export default function ContactForm ({ defaultService }) {
         />
       </FormField>
 
-      <div className='flex items-start gap-3'>
-        <input id='consent' type='checkbox' checked={form.consent} onChange={onChange} className='mt-1 h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900' />
-        <label htmlFor='consent' className='text-sm text-gray-700'>I consent to Excelerin contacting me about my enquiry.</label>
-      </div>
-      {errors.consent && <p className='text-sm text-red-600'>{errors.consent}</p>}
+      
 
       <div>
         <button

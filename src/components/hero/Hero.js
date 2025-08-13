@@ -5,8 +5,7 @@ import RotatingText from '@/components/text/RotatingText';
 
 export function Hero ({
   eyebrow = 'Practical AI for businesses',
-  title = 'Make your business AI‑ready',
-  subtitle = 'Approachable, outcome‑driven consultancy and implementation for businesses across Scotland and the UK — from idea to measurable results.',
+  subtitle = 'Understand and unlock AI for your business. Easy steps, trusted partners, and measurable results.',
   primaryCta = { href: '/contact', label: 'Book a discovery call' },
   secondaryCta = { href: '/services', label: 'See services' }
 }) {
@@ -54,14 +53,8 @@ export function Hero ({
             </h1>
             <p className='mt-4 text-lg text-gray-600'>{subtitle}</p>
 
-            {/* value chips */}
-            <ul className='mt-6 flex flex-wrap gap-2'>
-              {['Accessible', 'Practical', 'Measured results', 'Privacy‑first'].map((pill) => (
-                <li key={pill} className='rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-700'>
-                  {pill}
-                </li>
-              ))}
-            </ul>
+            {/* trust blurb */}
+            <p className='mt-6 text-sm text-gray-500'>From readiness and governance to hands‑on delivery — we guide businesses from idea to measurable wins.</p>
 
             {/* CTAs */}
             <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
@@ -82,12 +75,7 @@ export function Hero ({
                 {secondaryCta.label}
               </Link>
             </div>
-
-            {/* trust blurb */}
-            <p className='mt-6 text-sm text-gray-500'>From readiness and governance to hands‑on delivery — we guide businesses from idea to measurable wins.</p>
           </div>
-
-          
         </div>
       </div>
     </section>

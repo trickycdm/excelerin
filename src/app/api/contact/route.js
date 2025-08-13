@@ -50,7 +50,6 @@ export async function POST (req) {
       `Email: ${data.email}\n` +
       (data.phone ? `Phone: ${data.phone}\n` : '') +
       `Service: ${data.service}\n` +
-      `Consented: ${data.consent ? 'Yes' : 'No'}\n` +
       `Message:\n${data.message}\n\n` +
       `Meta: ${timestamp} | IP: ${ip} | UA: ${ua}`
 

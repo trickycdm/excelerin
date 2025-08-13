@@ -5,7 +5,8 @@ export const SERVICE_OPTIONS = [
   'AI Readiness Assessments',
   'AI Discovery Workshops',
   'AI Training',
-  'AI Implementation'
+  'AI Implementation',
+  'Other'
 ];
 
 export function sanitize (value) {
@@ -22,7 +23,6 @@ export function validateContactPayload (input) {
     phone: sanitize(input.phone).slice(0, 30),
     service: sanitize(input.service),
     message: sanitize(input.message).slice(0, 2000),
-    consent: Boolean(input.consent),
     website: sanitize(input.website || '') // honeypot
   };
 
@@ -30,7 +30,6 @@ export function validateContactPayload (input) {
   if (!data.company) errors.company = 'Please enter your company.';
   if (!data.email || !EMAIL_RE.test(data.email)) errors.email = 'Enter a valid email address.';
   if (!data.message || data.message.length < 10) errors.message = 'Tell us a little more (10+ characters).';
-  if (!data.consent) errors.consent = 'Please confirm you consent to being contacted.';
   if (!SERVICE_OPTIONS.includes(data.service)) errors.service = 'Select a service.';
   if (data.website) errors.form = 'Spam detected.';
 
