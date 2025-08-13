@@ -1,6 +1,16 @@
 import ServicesGrid from '@/components/services/ServicesGrid'
 
-export const metadata = { title: 'Services', description: 'AI services for SMEs in any sector — consultancy, readiness assessments, discovery workshops, training, and implementation.' }
+export const metadata = {
+  title: 'Services',
+  description: 'AI services for SMEs — consultancy, readiness assessments, discovery workshops, training, and implementation.',
+  alternates: { canonical: '/services' },
+  openGraph: {
+    type: 'website',
+    title: 'Services — Excelerin',
+    description: 'Explore Excelerin’s AI services for SMEs in any sector.',
+    url: 'https://www.excelerin.co.uk/services'
+  }
+}
 
 export default function ServicesPage () {
   const services = [

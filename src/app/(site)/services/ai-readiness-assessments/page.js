@@ -4,11 +4,42 @@ import ProcessSteps from '@/components/process/ProcessSteps'
 import FAQAccordion from '@/components/faq/FAQAccordion'
 import CTASection from '@/components/cta/CTASection'
 
-export const metadata = { title: 'AI Readiness Assessments', description: 'Independent AI readiness assessments for SMEs in any sector: data quality, security & privacy, risk posture, and a prioritised 30/60/90‑day plan.' }
+export const metadata = {
+  title: 'AI Readiness Assessments',
+  description: 'Independent AI readiness assessments for SMEs: data quality, security & privacy, risk posture, and a prioritised 30/60/90‑day plan.',
+  alternates: { canonical: '/services/ai-readiness-assessments' },
+  openGraph: {
+    type: 'article',
+    title: 'AI Readiness Assessments — Excelerin',
+    description: 'Evaluate data, processes, and risk to de‑risk AI and identify the right starting points.',
+    url: 'https://www.excelerin.co.uk/services/ai-readiness-assessments'
+  }
+}
 
 export default function AIReadinessAssessmentsPage () {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'AI Readiness Assessments',
+      provider: { '@type': 'Organization', name: 'Excelerin' },
+      url: 'https://www.excelerin.co.uk/services/ai-readiness-assessments',
+      areaServed: { '@type': 'Country', name: 'United Kingdom' },
+      serviceType: 'AI readiness assessment',
+      description: 'Independent AI readiness assessments for SMEs: data quality, security & privacy, risk posture, and a prioritised 30/60/90‑day plan.'
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Services', item: 'https://www.excelerin.co.uk/services' },
+        { '@type': 'ListItem', position: 2, name: 'AI Readiness Assessments', item: 'https://www.excelerin.co.uk/services/ai-readiness-assessments' }
+      ]
+    }
+  ]
   return (
     <>
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className='bg-white'>
         <div className='container py-16 sm:py-20'>
           <SectionHeading

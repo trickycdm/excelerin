@@ -4,11 +4,42 @@ import ProcessSteps from '@/components/process/ProcessSteps'
 import FAQAccordion from '@/components/faq/FAQAccordion'
 import CTASection from '@/components/cta/CTASection'
 
-export const metadata = { title: 'AI Consultancy', description: 'Practical, vendor-neutral AI consultancy for SMEs in any sector: opportunity discovery, risk & compliance, data readiness, and a 90‑day roadmap.' }
+export const metadata = {
+  title: 'AI Consultancy',
+  description: 'Practical, vendor‑neutral AI consultancy for SMEs: opportunity discovery, risk & compliance, data readiness, and a clear 90‑day roadmap.',
+  alternates: { canonical: '/services/ai-consultancy' },
+  openGraph: {
+    type: 'article',
+    title: 'AI Consultancy — Excelerin',
+    description: 'Strategic guidance to identify high‑value AI opportunities, reduce risk, and roadmap adoption for SMEs.',
+    url: 'https://www.excelerin.co.uk/services/ai-consultancy'
+  }
+}
 
 export default function AIConsultancyPage () {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'AI Consultancy',
+      provider: { '@type': 'Organization', name: 'Excelerin' },
+      url: 'https://www.excelerin.co.uk/services/ai-consultancy',
+      areaServed: { '@type': 'Country', name: 'United Kingdom' },
+      serviceType: 'AI consultancy for SMEs',
+      description: 'Strategic guidance to identify high‑value AI opportunities, reduce risk, and roadmap adoption for SMEs.'
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Services', item: 'https://www.excelerin.co.uk/services' },
+        { '@type': 'ListItem', position: 2, name: 'AI Consultancy', item: 'https://www.excelerin.co.uk/services/ai-consultancy' }
+      ]
+    }
+  ]
   return (
     <>
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className='bg-white'>
         <div className='container py-16 sm:py-20'>
           <SectionHeading

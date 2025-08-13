@@ -4,11 +4,42 @@ import ProcessSteps from '@/components/process/ProcessSteps'
 import FAQAccordion from '@/components/faq/FAQAccordion'
 import CTASection from '@/components/cta/CTASection'
 
-export const metadata = { title: 'AI Training', description: 'Practical, role‑based AI training for SMEs in any sector — designed for non‑technical and technical teams to use AI safely and effectively.' }
+export const metadata = {
+  title: 'AI Training',
+  description: 'Practical, role‑based AI training for SMEs — designed for non‑technical and technical teams to use AI safely and effectively.',
+  alternates: { canonical: '/services/ai-training' },
+  openGraph: {
+    type: 'article',
+    title: 'AI Training — Excelerin',
+    description: 'Hands‑on, role‑based training to upskill your teams on safe and effective AI workflows.',
+    url: 'https://www.excelerin.co.uk/services/ai-training'
+  }
+}
 
 export default function AITrainingPage () {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'AI Training',
+      provider: { '@type': 'Organization', name: 'Excelerin' },
+      url: 'https://www.excelerin.co.uk/services/ai-training',
+      areaServed: { '@type': 'Country', name: 'United Kingdom' },
+      serviceType: 'AI training',
+      description: 'Practical, role‑based training to help teams use AI safely and effectively.'
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Services', item: 'https://www.excelerin.co.uk/services' },
+        { '@type': 'ListItem', position: 2, name: 'AI Training', item: 'https://www.excelerin.co.uk/services/ai-training' }
+      ]
+    }
+  ]
   return (
     <>
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className='bg-white'>
         <div className='container py-16 sm:py-20'>
           <SectionHeading

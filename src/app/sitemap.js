@@ -4,6 +4,9 @@ export default function sitemap () {
     '',
     '/about',
     '/services',
+    '/jobs',
+    '/jobs/ai-discovery-partnership',
+    '/jobs/software-engineer',
     '/services/ai-consultancy',
     '/services/ai-readiness-assessments',
     '/services/ai-discovery-workshops',
@@ -15,7 +18,12 @@ export default function sitemap () {
     '/terms'
   ]
   const now = new Date().toISOString()
-  return routes.map((path) => ({ url: `${base}${path}`, lastModified: now }))
+  return routes.map((path) => ({
+    url: `${base}${path}`,
+    lastModified: now,
+    changeFrequency: path === '' ? 'weekly' : 'monthly',
+    priority: path === '' ? 1.0 : 0.7
+  }))
 }
 
 

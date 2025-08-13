@@ -4,11 +4,42 @@ import ProcessSteps from '@/components/process/ProcessSteps'
 import FAQAccordion from '@/components/faq/FAQAccordion'
 import CTASection from '@/components/cta/CTASection'
 
-export const metadata = { title: 'AI Implementation', description: 'Design, build, and deploy AI solutions for SMEs in any sector — integrate with workflows, measure outcomes, and scale responsibly.' }
+export const metadata = {
+  title: 'AI Implementation',
+  description: 'Design, build, and deploy AI solutions for SMEs — integrate with workflows, measure outcomes, and scale responsibly.',
+  alternates: { canonical: '/services/ai-implementation' },
+  openGraph: {
+    type: 'article',
+    title: 'AI Implementation — Excelerin',
+    description: 'Design, build, and deploy AI solutions that integrate with your workflows and deliver measurable outcomes.',
+    url: 'https://www.excelerin.co.uk/services/ai-implementation'
+  }
+}
 
 export default function AIImplementationPage () {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'AI Implementation',
+      provider: { '@type': 'Organization', name: 'Excelerin' },
+      url: 'https://www.excelerin.co.uk/services/ai-implementation',
+      areaServed: { '@type': 'Country', name: 'United Kingdom' },
+      serviceType: 'AI implementation',
+      description: 'Design, build, and deploy AI solutions that integrate with workflows and deliver measurable outcomes.'
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Services', item: 'https://www.excelerin.co.uk/services' },
+        { '@type': 'ListItem', position: 2, name: 'AI Implementation', item: 'https://www.excelerin.co.uk/services/ai-implementation' }
+      ]
+    }
+  ]
   return (
     <>
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className='bg-white'>
         <div className='container py-16 sm:py-20'>
           <SectionHeading

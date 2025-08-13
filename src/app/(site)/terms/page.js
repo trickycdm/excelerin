@@ -1,4 +1,14 @@
-export const metadata = { title: 'Terms' }
+export const metadata = {
+  title: 'Terms',
+  description: 'Excelerin terms of service.',
+  alternates: { canonical: '/terms' },
+  openGraph: {
+    type: 'website',
+    title: 'Terms — Excelerin',
+    description: 'Terms of service for Excelerin.',
+    url: 'https://www.excelerin.co.uk/terms'
+  }
+}
 
 export default function TermsPage () {
   return (

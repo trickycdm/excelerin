@@ -4,11 +4,42 @@ import ProcessSteps from '@/components/process/ProcessSteps'
 import FAQAccordion from '@/components/faq/FAQAccordion'
 import CTASection from '@/components/cta/CTASection'
 
-export const metadata = { title: 'AI Discovery Workshops', description: 'Structured, collaborative AI discovery workshops for SMEs in any sector to uncover high‑value use cases, assess feasibility and risk, and leave with a prioritised plan.' }
+export const metadata = {
+  title: 'AI Discovery Workshops',
+  description: 'Structured, collaborative AI discovery workshops for SMEs to uncover high‑value use cases, assess feasibility and risk, and leave with a prioritised plan.',
+  alternates: { canonical: '/services/ai-discovery-workshops' },
+  openGraph: {
+    type: 'article',
+    title: 'AI Discovery Workshops — Excelerin',
+    description: 'Collaborative sessions to surface high‑impact use cases and shape pilots with clear next steps.',
+    url: 'https://www.excelerin.co.uk/services/ai-discovery-workshops'
+  }
+}
 
 export default function AIDiscoveryWorkshopsPage () {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'AI Discovery Workshops',
+      provider: { '@type': 'Organization', name: 'Excelerin' },
+      url: 'https://www.excelerin.co.uk/services/ai-discovery-workshops',
+      areaServed: { '@type': 'Country', name: 'United Kingdom' },
+      serviceType: 'AI discovery workshop',
+      description: 'Structured, collaborative AI discovery workshops for SMEs to uncover high‑value use cases, assess feasibility and risk, and leave with a prioritised plan.'
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Services', item: 'https://www.excelerin.co.uk/services' },
+        { '@type': 'ListItem', position: 2, name: 'AI Discovery Workshops', item: 'https://www.excelerin.co.uk/services/ai-discovery-workshops' }
+      ]
+    }
+  ]
   return (
     <>
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className='bg-white'>
         <div className='container py-16 sm:py-20'>
           <SectionHeading

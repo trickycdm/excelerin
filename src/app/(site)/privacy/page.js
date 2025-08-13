@@ -1,4 +1,14 @@
-export const metadata = { title: 'Privacy' }
+export const metadata = {
+  title: 'Privacy',
+  description: 'Excelerin privacy policy — how we handle data, cookies, and your rights (GDPR).',
+  alternates: { canonical: '/privacy' },
+  openGraph: {
+    type: 'website',
+    title: 'Privacy — Excelerin',
+    description: 'Our approach to privacy and data protection.',
+    url: 'https://www.excelerin.co.uk/privacy'
+  }
+}
 
 export default function PrivacyPage () {
   return (

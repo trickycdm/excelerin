@@ -2,9 +2,29 @@ import Hero from '@/components/hero/Hero';
 import ServicesGrid from '@/components/services/ServicesGrid';
 import AboutSection from '@/components/about/AboutSection';
 
+export const metadata = {
+  title: 'Excelerin — AI consultancy for SMEs',
+  description: 'Practical AI for every business. We help SMEs adopt AI safely and effectively — strategy, readiness, discovery workshops, training, and implementation.',
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    title: 'Excelerin — AI consultancy for SMEs',
+    description: 'Practical, risk‑aware, results‑focused AI for SMEs across the UK.',
+    url: 'https://www.excelerin.co.uk/'
+  }
+};
+
 export default function Home () {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Excelerin — AI consultancy for SMEs',
+    url: 'https://www.excelerin.co.uk/',
+    description: 'Excelerin helps SMEs adopt AI safely and practically — strategy, readiness, discovery, training, and implementation.'
+  };
   return (
     <>
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Hero />
       <AboutSection
         paragraphs={[

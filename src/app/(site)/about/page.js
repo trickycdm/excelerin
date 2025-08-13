@@ -1,4 +1,14 @@
-export const metadata = { title: 'About' }
+export const metadata = {
+  title: 'About',
+  description: 'Excelerin is an AI consultancy helping SMEs across the UK adopt AI safely and practically — from strategy to implementation and training.',
+  alternates: { canonical: '/about' },
+  openGraph: {
+    type: 'website',
+    title: 'About Excelerin',
+    description: 'Who we are, how we work, and why SMEs choose Excelerin.',
+    url: 'https://www.excelerin.co.uk/about'
+  }
+}
 
 export default function AboutPage () {
   return (
