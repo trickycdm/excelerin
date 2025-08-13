@@ -103,4 +103,13 @@
   - Ensure keyboard navigation support.
 
   Follow Next.js docs for Data Fetching, Rendering, and Routing.
+
+  SEO Requirements (mandatory per page)
+  - For every new or edited `app/(site)/**/page.js`:
+    - Add `export const metadata` with: `title`, `description`, `alternates.canonical`, and `openGraph` (type, url, title, description, images). Add `twitter` when deviating from defaults.
+    - Inject JSON-LD with a relevant schema (`WebPage`, `AboutPage`, `ContactPage`, `CollectionPage`, `ProfessionalService`) via a `<script type='application/ld+json'>` tag.
+    - If creating a new route, add it to `src/app/sitemap.js` with reasonable `changeFrequency` and `priority`.
+    - Reuse `/excelerin.png` as the default OG/Twitter image unless a specific visual is provided.
+    - Ensure canonical URLs align with `metadataBase` in `src/app/layout.js`.
+  - Keep `src/app/robots.js` host and sitemap URL accurate for production domain.
     

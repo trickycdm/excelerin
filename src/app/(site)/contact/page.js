@@ -9,12 +9,13 @@ export const metadata = {
     type: 'website',
     title: 'Contact — Excelerin',
     description: 'Get in touch to discuss AI opportunities and next steps for your business.',
-    url: 'https://www.excelerin.co.uk/contact'
+    url: 'https://www.excelerin.co.uk/contact',
+    images: ['/excelerin.png']
   }
 }
 
-export default function ContactPage () {
-  const h = headers()
+export default async function ContactPage () {
+  const h = await headers()
   const url = h.get('x-url') || ''
   const role = (() => {
     try {
@@ -24,8 +25,16 @@ export default function ContactPage () {
       return ''
     }
   })()
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    url: 'https://www.excelerin.co.uk/contact',
+    name: 'Contact — Excelerin',
+    description: 'Get in touch to discuss AI opportunities and next steps for your business.'
+  }
   return (
     <main className='container py-16'>
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <div className='mx-auto max-w-2xl'>
         <h1 className='text-3xl font-semibold'>Tell us your goals</h1>
         <p className='mt-4 text-gray-600'>Share a few details and we’ll get back to you within one business day.</p>

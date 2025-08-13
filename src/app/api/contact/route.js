@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server'
 import { validateContactPayload } from '@/lib/validation/contact'
+import { ServerClient } from 'postmark'
+
+export const runtime = 'nodejs'
 
 // Simple in-memory rate limit per IP (cold-start reset acceptable for Netlify/Edge)
 const RATE_LIMIT_WINDOW_MS = 60 * 1000
@@ -29,17 +32,18 @@ export async function POST (req) {
     }
 
     const serverToken = process.env.POSTMARK_SERVER_TOKEN
-    const toEmail = process.env.CONTACT_TO_EMAIL
-    const fromEmail = process.env.CONTACT_FROM_EMAIL
-    const siteUrl = process.env.SITE_URL || 'https://www.excelerin.co.uk'
+    // Non-secret config kept in code per request
+    const toEmail = 'col@luupdin.com'
+    const fromEmail = 'hello@excelerin.com'
+    const siteUrl = 'https://www.excelerin.co.uk'
 
-    if (!serverToken || !toEmail || !fromEmail) {
+    if (!serverToken) {
       return NextResponse.json({ ok: false, message: 'Email not configured' }, { status: 500 })
     }
 
     const ua = req.headers.get('user-agent') || 'unknown'
     const timestamp = new Date().toISOString()
-    const subject = `[Excelerin] Website enquiry — ${data.name}`
+    const subject = `[Excelerin] Website enquiry — ${data.name} (${data.email})`
     const textBody = `New enquiry\n\n` +
       `Name: ${data.name}\n` +
       `Company: ${data.company}\n` +
@@ -50,27 +54,27 @@ export async function POST (req) {
       `Message:\n${data.message}\n\n` +
       `Meta: ${timestamp} | IP: ${ip} | UA: ${ua}`
 
-    // Send via Postmark
-    const res = await fetch('https://api.postmarkapp.com/email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-Postmark-Server-Token': serverToken
-      },
-      body: JSON.stringify({
-        From: fromEmail,
+    // Send via Postmark official client
+    const client = new ServerClient(serverToken)
+    const fromDisplayName = data.name ? `${data.name} via Excelerin` : 'Excelerin Website'
+    const fromField = `${fromDisplayName} <${fromEmail}>`
+    try {
+      await client.sendEmail({
+        From: fromField,
         To: toEmail,
         ReplyTo: data.email,
         Subject: subject,
         TextBody: textBody,
-        MessageStream: 'outbound'
+        MessageStream: 'outbound',
+        Metadata: {
+          source: 'website',
+          siteUrl,
+          service: data.service
+        },
+        Tag: 'contact-form'
       })
-    })
-
-    if (!res.ok) {
-      const errJson = await res.json().catch(() => ({}))
-      return NextResponse.json({ ok: false, message: 'Email send failed', details: errJson }, { status: 502 })
+    } catch (e) {
+      return NextResponse.json({ ok: false, message: 'Email send failed', details: e?.message || 'postmark_error' }, { status: 502 })
     }
 
     return NextResponse.json({ ok: true })

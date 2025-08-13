@@ -1,6 +1,7 @@
 import Hero from '@/components/hero/Hero';
 import ServicesGrid from '@/components/services/ServicesGrid';
 import AboutSection from '@/components/about/AboutSection';
+import CTASection from '@/components/cta/CTASection';
 
 export const metadata = {
   title: 'Excelerin — AI consultancy for SMEs',
@@ -67,6 +68,10 @@ export default function Home () {
             excerpt: 'Design, build, and deploy AI solutions that deliver measurable outcomes.'
           }
         ]}
+      />
+      <CTASection
+        title='Ready to explore AI for your business?'
+        subtitle='Book a discovery call — we’ll help you find the best next step.'
       />
     </>
   )

@@ -189,6 +189,60 @@ Privacy /privacy and Terms /terms
 	•	robots.txt allow all; include sitemap URL.
 	•	Favicons & social preview image configured in app/ metadata.
 
+	•	Per-page requirements (every `app/(site)/**/page.js`):
+	•	Add `export const metadata` with at least: `title`, `description`, `alternates.canonical`, and `openGraph` (type, url, title, description, images where available). Include `twitter` if the page needs a custom title/description.
+	•	Inject page-level JSON-LD via `<script type='application/ld+json'>` with an appropriate schema type:
+		•	Home: WebPage
+		•	About: AboutPage
+		•	Services overview: CollectionPage
+		•	Service detail: ProfessionalService (or Service)
+		•	Case studies list: CollectionPage
+		•	Contact: ContactPage
+	•	When adding a new route, add the path to `app/sitemap.js` to ensure it’s included in the XML sitemap. Keep `lastModified` logic intact.
+	•	Prefer canonical paths relative to `metadataBase` (configured in `app/layout.js`).
+	•	Use `/excelerin.png` as the default OG/Twitter image unless a more specific image exists.
+	•	Validate that `robots` and `sitemap` expose the correct host and sitemap URL.
+
+	Example (About page pattern):
+
+```js
+export const metadata = {
+  title: 'About',
+  description: 'Excelerin helps SMEs adopt AI safely and practically — from strategy to implementation and training.',
+  alternates: { canonical: '/about' },
+  openGraph: {
+    type: 'website',
+    title: 'About Excelerin',
+    description: 'Who we are, how we work, and why SMEs choose Excelerin.',
+    url: 'https://www.excelerin.co.uk/about',
+    images: ['/excelerin.png']
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Excelerin',
+    description: 'Who we are, how we work, and why SMEs choose Excelerin.',
+    images: ['/excelerin.png']
+  }
+};
+
+export default function AboutPage () {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'About Excelerin',
+    url: 'https://www.excelerin.co.uk/about',
+    description: 'Who we are, how we work, and why SMEs choose Excelerin.'
+  };
+
+  return (
+    <main>
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {/* page content */}
+    </main>
+  );
+}
+```
+
 ⸻
 
 12) Accessibility & Performance

@@ -9,8 +9,6 @@ export default function Footer () {
           <nav className='flex items-center gap-6'>
             <Link href='/services' className='text-sm text-gray-700 hover:text-gray-900'>Services</Link>
             <Link href='/jobs' className='text-sm text-gray-700 hover:text-gray-900'>Jobs</Link>
-            <Link href='/privacy' className='text-sm text-gray-700 hover:text-gray-900'>Privacy</Link>
-            <Link href='/terms' className='text-sm text-gray-700 hover:text-gray-900'>Terms</Link>
             <Link href='/contact' className='text-sm text-gray-700 hover:text-gray-900'>Contact</Link>
           </nav>
         </div>

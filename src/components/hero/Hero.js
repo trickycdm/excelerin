@@ -38,7 +38,7 @@ export function Hero ({
                 <span className='mr-0.5'>AI‑</span>
                 <RotatingText
                   texts={['Aware', 'Trained', 'Empowered', 'Ready']}
-                  loop={false}
+                  loop
                   mainClassName='overflow-hidden'
                   staggerFrom='last'
                   initial={{ y: '100%' }}
@@ -48,6 +48,7 @@ export function Hero ({
                   splitLevelClassName='overflow-hidden pb-0.5 sm:pb-1'
                   transition={{ type: 'spring', damping: 30, stiffness: 400 }}
                   rotationInterval={1800}
+                  pauseOnLastMs={7000}
                 />
               </span>
             </h1>

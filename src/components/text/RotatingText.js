@@ -25,6 +25,7 @@ const RotatingText = forwardRef((props, ref) => {
     animatePresenceMode = 'wait',
     animatePresenceInitial = false,
     rotationInterval = 2000,
+    pauseOnLastMs,
     staggerDuration = 0,
     staggerFrom = 'first',
     loop = true,
@@ -154,9 +155,13 @@ const RotatingText = forwardRef((props, ref) => {
 
   useEffect(() => {
     if (!auto) return
-    const intervalId = setInterval(next, rotationInterval)
-    return () => clearInterval(intervalId)
-  }, [next, rotationInterval, auto])
+    const isAtLast = currentTextIndex === texts.length - 1
+    const shouldStop = !loop && isAtLast
+    if (shouldStop) return
+    const delay = isAtLast ? (pauseOnLastMs ?? rotationInterval) : rotationInterval
+    const timeoutId = setTimeout(next, delay)
+    return () => clearTimeout(timeoutId)
+  }, [auto, next, rotationInterval, pauseOnLastMs, currentTextIndex, texts.length, loop])
 
   return (
     <motion.span
@@ -226,6 +231,7 @@ RotatingText.propTypes = {
   animatePresenceMode: PropTypes.string,
   animatePresenceInitial: PropTypes.bool,
   rotationInterval: PropTypes.number,
+    pauseOnLastMs: PropTypes.number,
   staggerDuration: PropTypes.number,
   staggerFrom: PropTypes.oneOfType([
     PropTypes.oneOf(['first', 'last', 'center', 'random']),

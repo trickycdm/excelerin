@@ -47,7 +47,7 @@ export default function Header () {
           <Link href='/services' className='text-sm text-gray-700 hover:text-gray-900'>Services</Link>
           <Link href='/about' className='text-sm text-gray-700 hover:text-gray-900'>About</Link>
           <Link href='/jobs' className='text-sm text-gray-700 hover:text-gray-900'>Jobs</Link>
-          <Link href='/case-studies' className='text-sm text-gray-700 hover:text-gray-900'>Case Studies</Link>
+          {/* <Link href='/case-studies' className='text-sm text-gray-700 hover:text-gray-900'>Case Studies</Link> */}
           <Link href='/contact' className='inline-flex items-center justify-center px-3 py-2 rounded-md bg-gray-900 text-white text-sm hover:bg-gray-800'>Contact</Link>
         </nav>
         <button
