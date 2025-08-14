@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
+import Image from "next/image";
 
 export default function Header () {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -39,7 +40,7 @@ export default function Header () {
       <div className='container h-16 flex items-center justify-between'>
         <div className='flex items-center gap-3'>
           <Link href='/' className='inline-flex items-center gap-2 font-semibold'>
-            <span className='inline-block w-6 h-6 rounded bg-gray-900' aria-hidden />
+            <Image src="/excelerin-logo.png" alt="Excelerin" width={24} height={24} />
             <span>Excelerin</span>
           </Link>
         </div>
