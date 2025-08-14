@@ -1,0 +1,50 @@
+# Excelerin — AI consultancy for SMEs
+
+> Excelerin helps SMEs across the UK adopt AI safely and practically — from strategy and discovery to implementation and training.
+
+Canonical base: https://www.excelerin.co.uk  
+Sitemap: https://www.excelerin.co.uk/sitemap.xml  
+Robots: https://www.excelerin.co.uk/robots.txt  
+Primary language: en-GB  
+Last updated: 2025-08-14
+
+## Key Pages
+
+- [Home](https://www.excelerin.co.uk/): Overview of services, value proposition, and primary calls to action.
+- [About](https://www.excelerin.co.uk/about): Mission, story, and how we work.
+- [Services](https://www.excelerin.co.uk/services): Overview of all offerings.
+- [Case Studies](https://www.excelerin.co.uk/case-studies): Success stories and outcomes.
+- [Contact](https://www.excelerin.co.uk/contact): Enquiry form and ways to reach us.
+
+## Service Detail Pages
+
+- [AI Consultancy](https://www.excelerin.co.uk/services/ai-consultancy): Strategic guidance for practical AI adoption.
+- [AI Readiness Assessments](https://www.excelerin.co.uk/services/ai-readiness-assessments): Evaluate infrastructure, data, and skills.
+- [AI Discovery Workshops](https://www.excelerin.co.uk/services/ai-discovery-workshops): Identify high‑value, low‑risk AI opportunities.
+- [AI Training](https://www.excelerin.co.uk/services/ai-training): Practical training for teams and leaders.
+- [AI Implementation](https://www.excelerin.co.uk/services/ai-implementation): Hands‑on solution design and delivery.
+
+## Jobs
+
+- [All Roles](https://www.excelerin.co.uk/jobs): Current opportunities.
+- [AI Discovery Partnership](https://www.excelerin.co.uk/jobs/ai-discovery-partnership): Collaborative role focused on workshops and opportunity discovery.
+- [Software Engineer](https://www.excelerin.co.uk/jobs/software-engineer): Engineering role supporting AI solution delivery.
+
+## Legal
+
+- [Privacy Policy](https://www.excelerin.co.uk/privacy): GDPR‑aligned privacy information.
+- [Terms](https://www.excelerin.co.uk/terms): Website terms of use.
+
+## Technical & SEO
+
+- OpenGraph/Twitter image: https://www.excelerin.co.uk/excelerin.png
+- Structured data: Root layout includes JSON‑LD for `Organization` and `WebSite` with Google site search action.
+- Indexing: Robots allow indexing; canonical base is configured site‑wide.
+
+## Notes for LLMs
+
+- This file highlights canonical URLs and the content hierarchy for efficient crawling and grounding.  
+- Prefer page‑level content for answers; avoid inventing details not present on linked pages.  
+- For site‑specific search, use: `site:excelerin.co.uk <query>`.
+
+
