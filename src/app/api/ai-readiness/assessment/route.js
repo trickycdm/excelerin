@@ -69,6 +69,24 @@ export async function POST (req) {
         (r?.roi ? `- ROI: ${r.roi}\n` : '')
       )).join('\n')
       : ''
+    
+    // Handle opportunity matrix if present
+    const opportunityMatrix = report?.opportunityMatrix || []
+    const opportunityMd = Array.isArray(opportunityMatrix) && opportunityMatrix.length
+      ? opportunityMatrix.map((opp, i) => {
+          const easeImpact = `Ease: ${opp?.ease || 'N/A'}/5, Impact: ${opp?.impact || 'N/A'}/5`
+          const costEffort = opp?.costEffort ? `Cost/Effort: ${opp.costEffort}` : ''
+          const priority = opp?.priority ? `Priority: ${opp.priority}` : ''
+          const confidence = opp?.confidence ? `Confidence: ${opp.confidence}` : ''
+          const assumptions = Array.isArray(opp?.assumptions) && opp.assumptions.length 
+            ? `\n  Assumptions:\n${opp.assumptions.map(a => `    - ${a}`).join('\n')}` : ''
+          
+          return `**${i + 1}. ${opp?.area || 'Opportunity'}**\n` +
+            `  ${opp?.description || ''}\n` +
+            `  ${easeImpact}${costEffort ? ` | ${costEffort}` : ''}${priority ? ` | ${priority}` : ''}${confidence ? ` | ${confidence}` : ''}\n` +
+            `  **Rationale:** ${opp?.rationale || 'N/A'}${assumptions}`
+        }).join('\n\n')
+      : ''
 
     const sections = []
     sections.push(`# AI Readiness Assessment`)
@@ -118,6 +136,11 @@ export async function POST (req) {
       sections.push(recMd)
       sections.push('')
     }
+    if (opportunityMd) {
+      sections.push(`## Opportunity Matrix`)
+      sections.push(opportunityMd)
+      sections.push('')
+    }
     if (report?.nextSteps) {
       sections.push(`## Next Steps`)
       sections.push(String(report.nextSteps))
@@ -130,6 +153,26 @@ export async function POST (req) {
       const keys = Object.keys(payload || {})
       if (keys.length) sections.push(keys.map(k => `- ${k}: ${typeof payload[k]}`).join('\n'))
       sections.push('')
+    }
+
+    // Check if appendix contains opportunity map JSON (for backward compatibility)
+    let appendixContent = report?.appendix || ''
+    if (appendixContent && typeof appendixContent === 'string') {
+      const opportunityMatch = appendixContent.match(/OPPORTUNITY_MAP_JSON=(\{.*\})/s)
+      if (opportunityMatch && !opportunityMd) {
+        try {
+          const opportunityData = JSON.parse(opportunityMatch[1])
+          if (Array.isArray(opportunityData)) {
+            sections.push(`## Legacy Opportunity Map (from appendix)`)
+            sections.push(opportunityData.map((opp, i) => 
+              `**${i + 1}. ${opp?.area || 'Opportunity'}**\n  ${opp?.description || ''}`
+            ).join('\n\n'))
+            sections.push('')
+          }
+        } catch (e) {
+          // If parsing fails, just continue with original appendix
+        }
+      }
     }
 
     sections.push('## Raw JSON Appendix')
