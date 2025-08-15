@@ -1,0 +1,69 @@
+{
+    "info": { "name": "Excelerin • AI Readiness API", "_postman_id": "e3b9a6b8-6b8b-4cc1-9b21-0b1ee0e5abcd", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+    "item": [
+      {
+        "name": "1) Happy Path",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" },
+            { "key": "X-API-Key", "value": "{{apiKey}}" },
+            { "key": "Idempotency-Key", "value": "demo-idem-001" }
+          ],
+          "url": { "raw": "{{baseUrl}}/api/ai-readiness/assessment", "host": ["{{baseUrl}}"], "path": ["api", "ai-readiness", "assessment"] },
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"sessionId\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"contact\": {\n    \"fullName\": \"Colin McKenzie\",\n    \"company\": \"McKenzie Law\",\n    \"preferredContactMethod\": \"email\",\n    \"email\": \"info@viraledge.co.uk\"\n  },\n  \"report\": {\n    \"assessmentScores\": [\n      { \"title\": \"Data Readiness\", \"score\": 3, \"bars\": \"⬛⬛⬛⬜⬜\" },\n      { \"title\": \"Process Maturity\", \"score\": 4, \"bars\": \"⬛⬛⬛⬛⬜\" }\n    ],\n    \"executiveSummary\": \"This is a placeholder executive summary for testing.\",\n    \"keyFindings\": {\n      \"strengths\": [\"Strong legal expertise\", \"Openness to new tech\"],\n      \"quickWins\": [\"Automated document drafting\"],\n      \"transformational\": [\"AI-assisted case research\"],\n      \"challenges\": [\"Data inconsistency across case files\"],\n      \"context\": \"Firm specialising in conveyancing and IP law.\"\n    },\n    \"recommendations\": [\n      {\"what\":\"Implement document automation\",\"why\":\"Reduce manual drafting workload\",\"how\":\"Pilot AI drafting tools on low-risk cases\",\"investment\":\"Medium\",\"timeline\":\"3 months\",\"roi\":\"High\"},\n      {\"what\":\"Improve search capabilities\",\"why\":\"Speed up information retrieval\",\"how\":\"Deploy intelligent search across SharePoint\",\"investment\":\"Low\",\"timeline\":\"1 month\",\"roi\":\"Medium\"},\n      {\"what\":\"Standardise client intake\",\"why\":\"Reduce errors and inconsistencies\",\"how\":\"Adopt structured digital intake forms\",\"investment\":\"Low\",\"timeline\":\"2 months\",\"roi\":\"High\"}\n    ],\n    \"nextSteps\": \"Consultant to review findings and prepare plan.\",\n    \"appendix\": \"OPPORTUNITY_MAP_JSON=[]\",\n    \"opportunityMatrix\": [\n      {\"area\":\"Operations & Service Delivery\",\"description\":\"Automated document drafting\",\"ease\":2,\"impact\":5,\"costEffort\":\"Medium\",\"priority\":13,\"confidence\":\"High\",\"rationale\":\"Frequent manual process with clear automation potential\",\"assumptions\":[\"Existing templates can be adapted\"]}\n    ]\n  }\n}"
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "2) 401 Auth Fail (no key)",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "url": { "raw": "{{baseUrl}}/api/ai-readiness/assessment", "host": ["{{baseUrl}}"], "path": ["api", "ai-readiness", "assessment"] },
+          "body": { "mode": "raw", "raw": "{\"sessionId\":\"bad-auth-test\"}" }
+        },
+        "response": []
+      },
+      {
+        "name": "3) Idempotency Replay (same key → same response)",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" },
+            { "key": "X-API-Key", "value": "{{apiKey}}" },
+            { "key": "Idempotency-Key", "value": "demo-idem-001" }
+          ],
+          "url": { "raw": "{{baseUrl}}/api/ai-readiness/assessment", "host": ["{{baseUrl}}"], "path": ["api", "ai-readiness", "assessment"] },
+          "body": { "mode": "raw", "raw": "{\"sessionId\":\"same-idempotency\",\"contact\":{\"fullName\":\"Test\",\"company\":\"Replay Co\",\"preferredContactMethod\":\"email\",\"email\":\"t@t.co\"},\"report\":{\"assessmentScores\":[{\"title\":\"Data\",\"score\":3,\"bars\":\"⬛⬛⬛⬜⬜\"}],\"executiveSummary\":\"x\",\"keyFindings\":{\"strengths\":[],\"quickWins\":[],\"transformational\":[],\"challenges\":[],\"context\":\"x\"},\"recommendations\":[{\"what\":\"a\",\"why\":\"b\",\"how\":\"c\",\"investment\":\"Low\",\"timeline\":\"1m\",\"roi\":\"Med\"},{\"what\":\"d\",\"why\":\"e\",\"how\":\"f\",\"investment\":\"Low\",\"timeline\":\"1m\",\"roi\":\"Med\"},{\"what\":\"g\",\"why\":\"h\",\"how\":\"i\",\"investment\":\"Low\",\"timeline\":\"1m\",\"roi\":\"Med\"}],\"nextSteps\":\"x\",\"appendix\":\"OPPORTUNITY_MAP_JSON=[]\",\"opportunityMatrix\":[]}}" }
+        },
+        "response": []
+      },
+      {
+        "name": "4) Large Payload (unicode + matrix)",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" },
+            { "key": "X-API-Key", "value": "{{apiKey}}" },
+            { "key": "Idempotency-Key", "value": "demo-idem-002" }
+          ],
+          "url": { "raw": "{{baseUrl}}/api/ai-readiness/assessment", "host": ["{{baseUrl}}"], "path": ["api", "ai-readiness", "assessment"] },
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"sessionId\": \"big-payload-001\",\n  \"contact\": {\"fullName\": \"Large Test\",\"company\": \"Payload Ltd\",\"preferredContactMethod\":\"email\",\"email\":\"test@example.com\"},\n  \"report\": {\n    \"assessmentScores\": [\n      { \"title\": \"Data Readiness\", \"score\": 2, \"bars\": \"⬛⬛⬜⬜⬜\" },\n      { \"title\": \"Process Maturity\", \"score\": 3, \"bars\": \"⬛⬛⬛⬜⬜\" },\n      { \"title\": \"Tech Enablement\", \"score\": 3, \"bars\": \"⬛⬛⬛⬜⬜\" },\n      { \"title\": \"Org Readiness\", \"score\": 4, \"bars\": \"⬛⬛⬛⬛⬜\" },\n      { \"title\": \"Use-Case Fit\", \"score\": 4, \"bars\": \"⬛⬛⬛⬛⬜\" }\n    ],\n    \"executiveSummary\": \"Unicode and larger matrix test.\",\n    \"keyFindings\": {\"strengths\":[],\"quickWins\":[],\"transformational\":[],\"challenges\":[],\"context\":\"x\"},\n    \"recommendations\": [\n      {\"what\":\"w1\",\"why\":\"y1\",\"how\":\"h1\",\"investment\":\"Medium\",\"timeline\":\"3-6 months\",\"roi\":\"High\"},\n      {\"what\":\"w2\",\"why\":\"y2\",\"how\":\"h2\",\"investment\":\"Low\",\"timeline\":\"<3 months\",\"roi\":\"Medium\"},\n      {\"what\":\"w3\",\"why\":\"y3\",\"how\":\"h3\",\"investment\":\"Low\",\"timeline\":\"<3 months\",\"roi\":\"Medium\"}\n    ],\n    \"nextSteps\": \"x\",\n    \"appendix\": \"OPPORTUNITY_MAP_JSON=[]\",\n    \"opportunityMatrix\": [\n      {\"area\":\"Ops\",\"description\":\"thing 1\",\"ease\":4,\"impact\":5,\"costEffort\":\"Medium\",\"priority\":9,\"confidence\":\"Medium\",\"rationale\":\"r1\",\"assumptions\":[\"a1\",\"a2\"]},\n      {\"area\":\"Admin\",\"description\":\"thing 2\",\"ease\":2,\"impact\":3,\"costEffort\":\"Low\",\"priority\":10,\"confidence\":\"High\",\"rationale\":\"r2\",\"assumptions\":[\"a3\"]}\n    ]\n  }\n}\n"
+          }
+        },
+        "response": []
+      }
+    ],
+    "variable": [
+      { "key": "baseUrl", "value": "https://excelerin.com" },
+      { "key": "apiKey", "value": "123ngh-skfng57-fnab019" }
+    ]
+  }

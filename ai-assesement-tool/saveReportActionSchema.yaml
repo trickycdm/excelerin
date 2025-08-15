@@ -1,0 +1,283 @@
+openapi: 3.1.0
+info:
+  title: Exelerin AI Readiness Assessment API
+  version: 1.3.2
+servers:
+  - url: https://excelerin.com/api/ai-readiness
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    CostEffortEnum:
+      type: string
+      enum:
+        - Low
+        - Medium
+        - High
+    ConfidenceEnum:
+      type: string
+      enum:
+        - Low
+        - Medium
+        - High
+    BarsString:
+      type: string
+      description: 5-character visual bar (e.g., black/white squares). Validation simplified for compatibility.
+      minLength: 5
+      maxLength: 5
+      example: ⬛⬛⬛⬜⬜
+    AssessmentScore:
+      type: object
+      required:
+        - title
+        - score
+        - bars
+      properties:
+        title:
+          type: string
+          minLength: 1
+        score:
+          type: integer
+          minimum: 1
+          maximum: 5
+        bars:
+          $ref: "#/components/schemas/BarsString"
+    KeyFindings:
+      type: object
+      required:
+        - strengths
+        - quickWins
+        - transformational
+        - challenges
+        - context
+      properties:
+        strengths:
+          type: array
+          items:
+            type: string
+        quickWins:
+          type: array
+          items:
+            type: string
+        transformational:
+          type: array
+          items:
+            type: string
+        challenges:
+          type: array
+          items:
+            type: string
+        context:
+          type: string
+    Recommendation:
+      type: object
+      required:
+        - what
+        - why
+        - how
+        - investment
+        - timeline
+        - roi
+      properties:
+        what:
+          type: string
+        why:
+          type: string
+        how:
+          type: string
+        investment:
+          type: string
+        timeline:
+          type: string
+        roi:
+          type: string
+    OpportunityItem:
+      type: object
+      required:
+        - area
+        - description
+        - ease
+        - impact
+        - costEffort
+        - priority
+        - confidence
+        - rationale
+        - assumptions
+      properties:
+        area:
+          type: string
+        description:
+          type: string
+        ease:
+          type: integer
+          minimum: 1
+          maximum: 5
+        impact:
+          type: integer
+          minimum: 1
+          maximum: 5
+        costEffort:
+          $ref: "#/components/schemas/CostEffortEnum"
+        priority:
+          type: number
+        confidence:
+          $ref: "#/components/schemas/ConfidenceEnum"
+        rationale:
+          type: string
+        assumptions:
+          type: array
+          items:
+            type: string
+    Report:
+      type: object
+      required:
+        - assessmentScores
+        - executiveSummary
+        - keyFindings
+        - recommendations
+        - nextSteps
+        - appendix
+      properties:
+        assessmentScores:
+          type: array
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/AssessmentScore"
+        executiveSummary:
+          type: string
+        keyFindings:
+          $ref: "#/components/schemas/KeyFindings"
+        recommendations:
+          type: array
+          minItems: 3
+          maxItems: 3
+          items:
+            $ref: "#/components/schemas/Recommendation"
+        nextSteps:
+          type: string
+        appendix:
+          type: string
+          description: May include OPPORTUNITY_MAP_JSON=<stringified array of OpportunityItem> for compatibility.
+        opportunityMatrix:
+          type: array
+          description: Optional LLM-derived opportunity scoring matrix.
+          items:
+            $ref: "#/components/schemas/OpportunityItem"
+    Contact:
+      type: object
+      required:
+        - fullName
+        - company
+        - preferredContactMethod
+      properties:
+        fullName:
+          type: string
+          minLength: 1
+        company:
+          type: string
+          minLength: 1
+        preferredContactMethod:
+          type: string
+          enum:
+            - email
+            - phone
+            - other
+        email:
+          type: string
+        phone:
+          type: string
+        otherContact:
+          type: string
+    AssessmentRequest:
+      type: object
+      required:
+        - sessionId
+        - contact
+        - report
+      properties:
+        sessionId:
+          type: string
+          description: UUID v4 recommended
+        contact:
+          $ref: "#/components/schemas/Contact"
+        report:
+          $ref: "#/components/schemas/Report"
+    AssessmentResponse:
+      type: object
+      required:
+        - status
+        - id
+        - storedAt
+      properties:
+        status:
+          type: string
+          enum:
+            - ok
+        id:
+          type: string
+        storedAt:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+paths:
+  /assessment:
+    post:
+      operationId: createAssessment
+      summary: Store the final assessment report, contact details, and opportunity matrix
+      security:
+        - apiKeyAuth: []
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssessmentRequest"
+      responses:
+        "200":
+          description: Assessment stored
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssessmentResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "429":
+          description: Rate limited
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
